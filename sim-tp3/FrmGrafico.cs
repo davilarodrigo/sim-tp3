@@ -14,12 +14,12 @@ namespace sim_tp3
     public partial class FrmGrafico : Form
     {
         List<int> frecuenciasObservadas;
-        int frecuenciaEsperada;
+        List<int> frecuenciasEsperadas;
 
-        public FrmGrafico(List<int> frecuenciasObservadas, int frecuenciaEsperada)
+        public FrmGrafico(List<int> frecuenciasObservadas, List<int> frecuenciasEsperadas)
         {
             this.frecuenciasObservadas = frecuenciasObservadas;
-            this.frecuenciaEsperada = frecuenciaEsperada;
+            this.frecuenciasEsperadas = frecuenciasEsperadas;
             InitializeComponent();
         }
 
@@ -52,7 +52,7 @@ namespace sim_tp3
             for (int i = 0; i < frecuenciasObservadas.Count; i++)
             {
                 chart1.Series["Observada"].Points.AddXY(i+1,frecuenciasObservadas[i]);
-                chart1.Series["Esperada"].Points.AddXY(i+1, frecuenciaEsperada);
+                chart1.Series["Esperada"].Points.AddXY(i+1, frecuenciasEsperadas[i]);
             }
         }
     }

@@ -38,6 +38,14 @@ namespace sim_tp3
             int a = Int32.Parse(this.textBoxA.Text);
             int b = Int32.Parse(this.textBoxB.Text);
 
+           if (b<a)
+            {
+                int c;
+                c = b;
+                b = a;
+                a = c;
+            }
+
             for (int i = 0; i < cantidadVueltas; i++)
             {
                 int numero = GeneradorDistribuciones.UniformeAB(a, b);
@@ -210,6 +218,11 @@ namespace sim_tp3
         {
             FrmAnalisisChiCuadrado form = new FrmAnalisisChiCuadrado(listaChi);
             form.ShowDialog();
+        }
+
+        private void panelPoisson_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         //private void button1_Click(object sender, EventArgs e)

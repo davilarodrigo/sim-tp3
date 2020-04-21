@@ -14,3 +14,19 @@ E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\Interop.VBI
 E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\sim-tp3.csproj.ResolveComReference.cache
 E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\sim_tp3.FrmAnalisisChiCuadrado.resources
 E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\sim_tp3.FrmGrafico.resources
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\Interop.Microsoft.Office.Core.dll
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\Interop.VBIDE.dll
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\sim-tp3.csproj.ResolveComReference.cache
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\sim-tp3.exe
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\sim-tp3.pdb
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\bin\Debug\sim-tp3.exe.config
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\bin\Debug\sim-tp3.exe
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\bin\Debug\sim-tp3.pdb
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\sim_tp3.FormPrincipal.resources
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\sim_tp3.FrmAnalisisChiCuadrado.resources
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\sim_tp3.FrmGrafico.resources
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\sim_tp3.Properties.Resources.resources
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\sim-tp3.csproj.GenerateResource.cache
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\sim-tp3.csproj.CoreCompileInputs.cache
+C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\sim-tp3.csprojAssemblyReference.cache

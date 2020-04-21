@@ -85,7 +85,7 @@
             this.groupBoxDistribucion.Controls.Add(this.radioButtonUniformeAB);
             this.groupBoxDistribucion.Location = new System.Drawing.Point(12, 12);
             this.groupBoxDistribucion.Name = "groupBoxDistribucion";
-            this.groupBoxDistribucion.Size = new System.Drawing.Size(198, 152);
+            this.groupBoxDistribucion.Size = new System.Drawing.Size(198, 148);
             this.groupBoxDistribucion.TabIndex = 0;
             this.groupBoxDistribucion.TabStop = false;
             this.groupBoxDistribucion.Text = "Distribución a Elegir";
@@ -96,6 +96,7 @@
             this.textBoxN.Name = "textBoxN";
             this.textBoxN.Size = new System.Drawing.Size(100, 20);
             this.textBoxN.TabIndex = 6;
+            this.textBoxN.Text = "100";
             // 
             // radioButtonPoisson
             // 
@@ -160,9 +161,9 @@
             this.panelUniforme.Controls.Add(this.textBoxA);
             this.panelUniforme.Controls.Add(this.labelB);
             this.panelUniforme.Controls.Add(this.labelA);
-            this.panelUniforme.Location = new System.Drawing.Point(12, 170);
+            this.panelUniforme.Location = new System.Drawing.Point(219, 291);
             this.panelUniforme.Name = "panelUniforme";
-            this.panelUniforme.Size = new System.Drawing.Size(198, 268);
+            this.panelUniforme.Size = new System.Drawing.Size(198, 130);
             this.panelUniforme.TabIndex = 1;
             // 
             // labelUniformeAB
@@ -191,6 +192,7 @@
             this.textBoxB.Name = "textBoxB";
             this.textBoxB.Size = new System.Drawing.Size(100, 20);
             this.textBoxB.TabIndex = 3;
+            this.textBoxB.Text = "70";
             // 
             // textBoxA
             // 
@@ -198,6 +200,7 @@
             this.textBoxA.Name = "textBoxA";
             this.textBoxA.Size = new System.Drawing.Size(100, 20);
             this.textBoxA.TabIndex = 2;
+            this.textBoxA.Text = "20";
             // 
             // labelB
             // 
@@ -225,9 +228,9 @@
             this.panelNormal.Controls.Add(this.buttonGenerarNormal);
             this.panelNormal.Controls.Add(this.textBoxMediaNormal);
             this.panelNormal.Controls.Add(this.labelMediaNormal);
-            this.panelNormal.Location = new System.Drawing.Point(12, 170);
+            this.panelNormal.Location = new System.Drawing.Point(219, 16);
             this.panelNormal.Name = "panelNormal";
-            this.panelNormal.Size = new System.Drawing.Size(198, 268);
+            this.panelNormal.Size = new System.Drawing.Size(198, 131);
             this.panelNormal.TabIndex = 2;
             // 
             // textBoxDesviacionNormal
@@ -289,9 +292,9 @@
             this.panelExponencial.Controls.Add(this.labelValorExponencial);
             this.panelExponencial.Controls.Add(this.groupBoxExponencial);
             this.panelExponencial.Controls.Add(this.labelExponencial);
-            this.panelExponencial.Location = new System.Drawing.Point(12, 170);
+            this.panelExponencial.Location = new System.Drawing.Point(12, 166);
             this.panelExponencial.Name = "panelExponencial";
-            this.panelExponencial.Size = new System.Drawing.Size(198, 268);
+            this.panelExponencial.Size = new System.Drawing.Size(198, 256);
             this.panelExponencial.TabIndex = 3;
             // 
             // buttonGenerarExponencial
@@ -369,10 +372,11 @@
             this.panelPoisson.Controls.Add(this.buttonGenerarPoisson);
             this.panelPoisson.Controls.Add(this.textBoxMediaPoisson);
             this.panelPoisson.Controls.Add(this.labelMediaPoisson);
-            this.panelPoisson.Location = new System.Drawing.Point(12, 170);
+            this.panelPoisson.Location = new System.Drawing.Point(219, 153);
             this.panelPoisson.Name = "panelPoisson";
-            this.panelPoisson.Size = new System.Drawing.Size(198, 268);
+            this.panelPoisson.Size = new System.Drawing.Size(198, 132);
             this.panelPoisson.TabIndex = 4;
+            this.panelPoisson.Paint += new System.Windows.Forms.PaintEventHandler(this.panelPoisson_Paint);
             // 
             // labelPoisson
             // 
@@ -413,7 +417,7 @@
             // buttonSalir
             // 
             this.buttonSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSalir.Location = new System.Drawing.Point(417, 445);
+            this.buttonSalir.Location = new System.Drawing.Point(708, 398);
             this.buttonSalir.Name = "buttonSalir";
             this.buttonSalir.Size = new System.Drawing.Size(75, 23);
             this.buttonSalir.TabIndex = 5;
@@ -424,7 +428,7 @@
             // buttonChi2
             // 
             this.buttonChi2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonChi2.Location = new System.Drawing.Point(267, 444);
+            this.buttonChi2.Location = new System.Drawing.Point(558, 398);
             this.buttonChi2.Name = "buttonChi2";
             this.buttonChi2.Size = new System.Drawing.Size(144, 23);
             this.buttonChi2.TabIndex = 5;
@@ -436,16 +440,16 @@
             // 
             this.dataGridViewMostrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewMostrar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMostrar.Location = new System.Drawing.Point(216, 12);
+            this.dataGridViewMostrar.Location = new System.Drawing.Point(426, 6);
             this.dataGridViewMostrar.Name = "dataGridViewMostrar";
-            this.dataGridViewMostrar.Size = new System.Drawing.Size(276, 426);
+            this.dataGridViewMostrar.Size = new System.Drawing.Size(357, 386);
             this.dataGridViewMostrar.TabIndex = 6;
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 480);
+            this.ClientSize = new System.Drawing.Size(795, 430);
             this.ControlBox = false;
             this.Controls.Add(this.dataGridViewMostrar);
             this.Controls.Add(this.buttonChi2);
@@ -457,10 +461,9 @@
             this.Controls.Add(this.groupBoxDistribucion);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(520, 519);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(520, 519);
             this.Name = "FormPrincipal";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Trabajo Práctico 3";
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.groupBoxDistribucion.ResumeLayout(false);

@@ -9,103 +9,132 @@ namespace sim_tp3
 {
     public class AnalizadorDeMuestra
     {
+        public enum TiposDistribucion { ExponencialNegativa, Uniforme, Normal, Poisson};
 
+        List<double> muestra;
         List<double> limitesInferioresDeIntervalos;
         List<double> limitesSuperioresDeIntervalos;
-        List<double> muestra;
-        List<int> frecuenciaObservada;  //no se usa
+        List<int>    frecuenciasObservadas;
+        List<int>    frecuenciasEsperadas;
 
-        public List<double> LimitesInferioresDeIntervalos { get => limitesInferioresDeIntervalos; }
-        public List<double> LimitesSuperioresDeIntervalos { get => limitesSuperioresDeIntervalos; }
-        
-        public List<double> Muestra { get => muestra; }
-        
-        int n; //tamaño de la muestra
-        int k; //cantidad de intervalos
+        public List<double> ObtenerMuestra { get => muestra; }
+        public List<double> ObtenerLimitesInferioresDeIntervalos { get => limitesInferioresDeIntervalos; }
+        public List<double> ObtenerLimitesSuperioresDeIntervalos { get => limitesSuperioresDeIntervalos; }
+        public List<int>    ObtenerFrecuenciasObservadas { get => frecuenciasObservadas; }
+        public List<int>    ObtenerFrecuenciasEsperadas { get => frecuenciasEsperadas; }
+                
+        private int tamañoMuestra; //tamaño de la muestra
+        private int cantidadDeIntervalos; //cantidad de intervalos
 
-        public AnalizadorDeMuestra(List<double> muestra)
+        public AnalizadorDeMuestra(List<double> muestra, int cantidadDeIntervalos, TiposDistribucion tipoDeDistribucion)
         {
             this.muestra = muestra;
-            n = muestra.Count;
+            this.cantidadDeIntervalos = cantidadDeIntervalos;
+            this.tamañoMuestra = muestra.Count;
+
+            AnalizarDistribucionDeFrecuencia();
+            CalcularFrecuenciasEsperadas(tipoDeDistribucion);
+
         }
 
-        public double calcularChiCuadrado()
+        public double ObtenerChiCuadrado()
         {
-            int frecuenciaEsperada = FrecuenciaEsperadaUniforme01();
+            int frecuenciaEsperada = 5;//esto despues hay q arreglarlo
 
             double sumatoria = 0;
 
-            for (int i = 0; i < k; i++)
+            for (int i = 0; i < cantidadDeIntervalos; i++)
             {
-                sumatoria += (Math.Pow(frecuenciaObservada[i] - (double)frecuenciaEsperada, 2));
+                sumatoria += (Math.Pow(frecuenciasObservadas[i] - (double)frecuenciaEsperada, 2));
             }
             sumatoria /= (double)frecuenciaEsperada;
 
             return Math.Truncate(sumatoria* 100000)/100000;
         }
 
-        public int FrecuenciaEsperadaUniforme01(int k)
+        void CalcularFrecuenciasEsperadas(TiposDistribucion tipoDeDistribucion)
         {
-            return (int)Math.Floor((double)n / (double)k);
+            frecuenciasEsperadas = new List<int>();
+            
+            switch (tipoDeDistribucion)
+            {
+                case TiposDistribucion.ExponencialNegativa:                    
+                    break;
+
+                case TiposDistribucion.Uniforme:
+
+                    int frecuenciaEsperada = tamañoMuestra / cantidadDeIntervalos;
+
+                    for (int i = 0; i < cantidadDeIntervalos; i++)
+                    {
+                        frecuenciasEsperadas.Add(frecuenciaEsperada);
+                    }
+
+                    break;
+
+                case TiposDistribucion.Normal:
+                    break;
+                case TiposDistribucion.Poisson:
+                    break;
+                default:
+                    break;
+            }
+                       
+
         }
 
-        public int FrecuenciaEsperadaUniforme01()
+        void DefinirLimitesDeLosIntervalos(int cantidadDeIntervalos)
         {
-            return (int) Math.Floor( (double)n / (double)k);
-        }
-        
-        public List<int> FrecuenciasObservadasUniforme01()
-        {
-            return FrecuenciasObservadasUniforme01(0);
+            //se obtienen los limites superior e inferior de la muestra en si
+            double limiteInferior = muestra.Min();
+            double limiteSuperior = muestra.Max();
+
+            double extensionDeLaMuestra = limiteSuperior - limiteInferior;
+            double tamañoIntervalo = extensionDeLaMuestra / cantidadDeIntervalos;            
+
+            for (int i = 0; i < cantidadDeIntervalos; i++)
+            {
+                limitesInferioresDeIntervalos.Add(limiteInferior + tamañoIntervalo * i);
+                limitesSuperioresDeIntervalos.Add(limiteInferior + tamañoIntervalo * (i+1));
+            }
         }
 
-        public List<int> FrecuenciasObservadasUniforme01(int cantidadDeIntervalos)
-        {
-            k = cantidadDeIntervalos;
-            frecuenciaObservada = new List<int>();
+        void AnalizarDistribucionDeFrecuencia()
+        {        
+            frecuenciasObservadas = new List<int>();
             limitesSuperioresDeIntervalos = new List<double>();
             limitesInferioresDeIntervalos = new List<double>();
-            n = muestra.Count;
+                
+            DefinirLimitesDeLosIntervalos(cantidadDeIntervalos);
 
-            if (k == 0) k = (int)Math.Floor(Math.Sqrt(n));
-
-            for (int i = 0; i < k; i++)
+            for (int i = 0; i < cantidadDeIntervalos; i++)
             {//este for se puede hacer en un solo reglon?¿¿
-                frecuenciaObservada.Add(0);
+                frecuenciasObservadas.Add(0);
             }
-
-            for (int i = 1; i <= k; i++)
+                        
+            for (int i = 0; i < tamañoMuestra; i++)
             {
-                double limiteDelIntervalo = (double)((double)i) / ((double)k);
-
-                limitesInferioresDeIntervalos.Add(limiteDelIntervalo - (((double)1) / ((double)k)));
-                limitesSuperioresDeIntervalos.Add(limiteDelIntervalo);
-            }
-
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < k; j++)
+                for (int j = 0; j < cantidadDeIntervalos; j++)
                 {
-                    if (muestra[i] < limitesSuperioresDeIntervalos[j])
+                    if (muestra[i] <= limitesSuperioresDeIntervalos[j])
                     {
-                        frecuenciaObservada[j]++;
+                        frecuenciasObservadas[j]++;
                         break;
                     }
                 }
             }
-            return frecuenciaObservada;
         }
 
         public List<double> obtenerEstadisticoPrueba()
         {
-            int frecuenciaEsperada = FrecuenciaEsperadaUniforme01();
+            int frecuenciaEsperada = 5; //hay q cambviarlo
 
             List<double> estadisticosPrueba = new List<double>();
             double sumatoria = 0;
 
-            for (int i = 0; i < k; i++)
+            for (int i = 0; i < cantidadDeIntervalos; i++)
             {
-                sumatoria = (Math.Pow(frecuenciaObservada[i] - (double)frecuenciaEsperada, 2));
+                sumatoria = (Math.Pow(frecuenciasObservadas[i] - (double)frecuenciaEsperada, 2));
                 sumatoria /= (double)frecuenciaEsperada;
                 estadisticosPrueba.Add(Math.Truncate(sumatoria * 100000) / 100000);
             }
