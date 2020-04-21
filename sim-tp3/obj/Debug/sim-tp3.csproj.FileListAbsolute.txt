@@ -1,0 +1,16 @@
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\bin\Debug\sim-tp3.exe.config
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\bin\Debug\sim-tp3.exe
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\bin\Debug\sim-tp3.pdb
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\sim-tp3.csprojAssemblyReference.cache
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\sim_tp3.Properties.Resources.resources
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\sim-tp3.csproj.GenerateResource.cache
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\sim-tp3.csproj.CoreCompileInputs.cache
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\sim-tp3.exe
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\sim-tp3.pdb
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\sim_tp3.FormPrincipal.resources
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\Interop.Microsoft.Office.Core.dll
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\Interop.Microsoft.Office.Interop.Excel.dll
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\Interop.VBIDE.dll
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\sim-tp3.csproj.ResolveComReference.cache
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\sim_tp3.FrmAnalisisChiCuadrado.resources
+E:\Rodolfo\FACULTAD\4 Año\Simulación\tp3\sim-tp3\sim-tp3\obj\Debug\sim_tp3.FrmGrafico.resources
