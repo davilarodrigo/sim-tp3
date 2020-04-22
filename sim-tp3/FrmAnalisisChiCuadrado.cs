@@ -18,11 +18,15 @@ namespace sim_tp3
         bool muestraAnalizada=false;
 
         List<int> frecuenciasObservadas;
-        List<int> frecuenciasEsperadas;
+        List<double> frecuenciasEsperadas;
         List<double> limitesInferioresDeIntervalos;
         List<double> limitesSuperioresDeIntervalos;
 
         bool cantidadIntervalosManual;
+        AnalizadorDeMuestra.TiposDistribucion tipoDistribucion;
+
+        private double mediaEsperada=0;
+        private double varianzaEsperada=0;
 
         AnalizadorDeMuestra analizadorDeMuestra;
 
@@ -32,17 +36,35 @@ namespace sim_tp3
 
         #region constructores 
 
-        public FrmAnalisisChiCuadrado(List<double> muestra, double varianzaEsperada )
+        public FrmAnalisisChiCuadrado(List<double> muestra, AnalizadorDeMuestra.TiposDistribucion tipoDeDistribucion, double media, double desviacion)
         {
-            this.muestra = muestra;
             construirFormulario();
-            label23.Text = varianzaEsperada.ToString();            
+            this.muestra = muestra;
+            this.tipoDistribucion = tipoDeDistribucion;
+
+            this.varianzaEsperada = Math.Truncate(10000 * Math.Pow(desviacion, 2) / 10000);
+            this.mediaEsperada = media;
+
+            lblMediaEsperada.Text = media.ToString();
+            lblVarianzaEsperada.Text = varianzaEsperada.ToString();            
         }
         
-        public FrmAnalisisChiCuadrado(List<double> muestra)
+        public FrmAnalisisChiCuadrado(List<double> muestra, AnalizadorDeMuestra.TiposDistribucion tipoDeDistribucion, double media)
         {
-            this.muestra = muestra;
             construirFormulario();
+            this.muestra = muestra;
+            this.tipoDistribucion = tipoDeDistribucion;
+
+            this.mediaEsperada = media;
+
+            lblMediaEsperada.Text = media.ToString();
+        }
+
+        public FrmAnalisisChiCuadrado(List<double> muestra, AnalizadorDeMuestra.TiposDistribucion tipoDeDistribucion)
+        {
+            construirFormulario();
+            this.muestra = muestra;
+            this.tipoDistribucion = tipoDeDistribucion;
         }
 
         public FrmAnalisisChiCuadrado()
@@ -94,9 +116,12 @@ namespace sim_tp3
             lblCantidadIntervalos.Text = cantidadIntervalos.ToString();
 
             //a partir de este punto ya esta todo validado, y se comienza a analizar la muestra
+
             analizadorDeMuestra = new AnalizadorDeMuestra(muestra,
                                                           cantidadIntervalos,
-                                                          AnalizadorDeMuestra.TiposDistribucion.Uniforme);
+                                                          tipoDistribucion,
+                                                          this.varianzaEsperada,
+                                                          this.mediaEsperada);
 
             frecuenciasObservadas = analizadorDeMuestra.ObtenerFrecuenciasObservadas;            
             frecuenciasEsperadas = analizadorDeMuestra.ObtenerFrecuenciasEsperadas;

@@ -14,9 +14,9 @@ namespace sim_tp3
     public partial class FrmGrafico : Form
     {
         List<int> frecuenciasObservadas;
-        List<int> frecuenciasEsperadas;
+        List<double> frecuenciasEsperadas;
 
-        public FrmGrafico(List<int> frecuenciasObservadas, List<int> frecuenciasEsperadas)
+        public FrmGrafico(List<int> frecuenciasObservadas, List<double> frecuenciasEsperadas)
         {
             this.frecuenciasObservadas = frecuenciasObservadas;
             this.frecuenciasEsperadas = frecuenciasEsperadas;

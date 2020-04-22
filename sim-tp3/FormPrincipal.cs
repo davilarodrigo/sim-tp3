@@ -12,6 +12,12 @@ namespace sim_tp3
 {
     public partial class FormPrincipal : Form
     {
+
+        private double media;
+        private double desviacion;
+
+        AnalizadorDeMuestra.TiposDistribucion tipoDeDistribucion;
+
         public FormPrincipal()
         {
             InitializeComponent();
@@ -73,6 +79,8 @@ namespace sim_tp3
                 this.listaChi.Add(numero);
             }
 
+            this.media = media;
+
             if (this.dataGridViewMostrar.Rows.Count > 0)
             {
                 this.buttonChi2.Enabled = true;
@@ -97,6 +105,10 @@ namespace sim_tp3
             int media = Int32.Parse(this.textBoxMediaNormal.Text);
             int desviacion = Int32.Parse(this.textBoxDesviacionNormal.Text);
             int index = 1;
+
+
+            this.media = media;
+            this.desviacion = desviacion;
 
             for (int i = 0; i < cantidadVueltas; i++)
             {
@@ -135,6 +147,8 @@ namespace sim_tp3
                 lambda = Convert.ToDouble(this.textBoxValorExponencial.Text);
             }
 
+            this.media = (double)1 / (double)lambda;
+
             for (int i = 0; i < cantidadVueltas; i++)
             {
                 double numero = GeneradorDistribuciones.ExponencialNegativa(lambda);
@@ -150,6 +164,8 @@ namespace sim_tp3
 
         private void SetearFormulario()
         {
+            tipoDeDistribucion = AnalizadorDeMuestra.TiposDistribucion.Uniforme;
+
             this.dataGridViewMostrar.ColumnCount = 2;
             this.dataGridViewMostrar.Columns[0].HeaderText = "Iteración";
             this.dataGridViewMostrar.Columns[1].HeaderText = "Número";
@@ -172,6 +188,8 @@ namespace sim_tp3
 
         private void RadioButtonUniformeAB_CheckedChanged(object sender, EventArgs e)
         {
+            tipoDeDistribucion = AnalizadorDeMuestra.TiposDistribucion.Uniforme;
+            
             this.panelUniforme.BringToFront();
             this.panelUniforme.Enabled = true;
             this.panelNormal.Enabled = false;
@@ -183,6 +201,9 @@ namespace sim_tp3
 
         private void RadioButtonExponencial_CheckedChanged(object sender, EventArgs e)
         {
+            tipoDeDistribucion = AnalizadorDeMuestra.TiposDistribucion.ExponencialNegativa;
+
+
             this.panelExponencial.BringToFront();
             this.panelExponencial.Enabled = true;
             this.panelUniforme.Enabled = false;
@@ -194,6 +215,9 @@ namespace sim_tp3
 
         private void RadioButtonNormal_CheckedChanged(object sender, EventArgs e)
         {
+            tipoDeDistribucion = AnalizadorDeMuestra.TiposDistribucion.Normal;
+
+
             this.panelNormal.BringToFront();
             this.panelNormal.Enabled = true;
             this.panelUniforme.Enabled = false;
@@ -205,6 +229,9 @@ namespace sim_tp3
 
         private void RadioButtonPoisson_CheckedChanged(object sender, EventArgs e)
         {
+            tipoDeDistribucion = AnalizadorDeMuestra.TiposDistribucion.Poisson;
+
+
             this.panelPoisson.BringToFront();
             this.panelPoisson.Enabled = true;
             this.panelUniforme.Enabled = false;
@@ -216,8 +243,35 @@ namespace sim_tp3
 
         private void ButtonChi2_Click(object sender, EventArgs e)
         {
-            FrmAnalisisChiCuadrado form = new FrmAnalisisChiCuadrado(listaChi);
+
+            FrmAnalisisChiCuadrado form=null;
+
+            switch (tipoDeDistribucion)
+            {
+                case AnalizadorDeMuestra.TiposDistribucion.ExponencialNegativa:                              
+                    
+                     form = new FrmAnalisisChiCuadrado(listaChi, tipoDeDistribucion,this.media);
+                    break;
+
+                case AnalizadorDeMuestra.TiposDistribucion.Uniforme:
+                     form = new FrmAnalisisChiCuadrado(listaChi, tipoDeDistribucion);
+                    break;
+
+                case AnalizadorDeMuestra.TiposDistribucion.Normal:
+                    form = new FrmAnalisisChiCuadrado(listaChi, tipoDeDistribucion, this.media,this.desviacion);
+                    break;
+
+                case AnalizadorDeMuestra.TiposDistribucion.Poisson:
+                    form = new FrmAnalisisChiCuadrado(listaChi, tipoDeDistribucion, this.media);
+                    break;
+
+                default:
+                    break;
+            }
+
             form.ShowDialog();
+
+
         }
 
         private void panelPoisson_Paint(object sender, PaintEventArgs e)

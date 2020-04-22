@@ -376,7 +376,6 @@
             this.panelPoisson.Name = "panelPoisson";
             this.panelPoisson.Size = new System.Drawing.Size(198, 132);
             this.panelPoisson.TabIndex = 4;
-            this.panelPoisson.Paint += new System.Windows.Forms.PaintEventHandler(this.panelPoisson_Paint);
             // 
             // labelPoisson
             // 
