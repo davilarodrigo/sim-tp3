@@ -50,6 +50,10 @@
             this.grpAgregarValor = new System.Windows.Forms.GroupBox();
             this.label18 = new System.Windows.Forms.Label();
             this.groupBoxMediaVarianza = new System.Windows.Forms.GroupBox();
+            this.lblVarianzaEsperada = new System.Windows.Forms.Label();
+            this.lblVarianzaObservada = new System.Windows.Forms.Label();
+            this.lblMediaEsperada = new System.Windows.Forms.Label();
+            this.lblMediaObservada = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -58,13 +62,10 @@
             this.btnExportarExcel = new System.Windows.Forms.Button();
             this.lblChiCuadrado = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.lblMediaObservada = new System.Windows.Forms.Label();
-            this.lblMediaEsperada = new System.Windows.Forms.Label();
-            this.lblVarianzaObservada = new System.Windows.Forms.Label();
-            this.lblVarianzaEsperada = new System.Windows.Forms.Label();
             this.lblTamañoMuestra = new System.Windows.Forms.Label();
             this.lblCantidadIntervalos = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnAjustarIntervalos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMuestra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFrecuencia)).BeginInit();
             this.grpIntervalos.SuspendLayout();
@@ -78,7 +79,7 @@
             this.dgvMuestra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMuestra.Location = new System.Drawing.Point(232, 12);
             this.dgvMuestra.Name = "dgvMuestra";
-            this.dgvMuestra.Size = new System.Drawing.Size(177, 399);
+            this.dgvMuestra.Size = new System.Drawing.Size(162, 399);
             this.dgvMuestra.TabIndex = 7;
             this.dgvMuestra.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -95,9 +96,9 @@
             // dgvFrecuencia
             // 
             this.dgvFrecuencia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFrecuencia.Location = new System.Drawing.Point(415, 12);
+            this.dgvFrecuencia.Location = new System.Drawing.Point(400, 12);
             this.dgvFrecuencia.Name = "dgvFrecuencia";
-            this.dgvFrecuencia.Size = new System.Drawing.Size(373, 325);
+            this.dgvFrecuencia.Size = new System.Drawing.Size(388, 325);
             this.dgvFrecuencia.TabIndex = 8;
             this.dgvFrecuencia.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -298,6 +299,42 @@
             this.groupBoxMediaVarianza.TabStop = false;
             this.groupBoxMediaVarianza.Text = "Media y Varianza";
             // 
+            // lblVarianzaEsperada
+            // 
+            this.lblVarianzaEsperada.AutoSize = true;
+            this.lblVarianzaEsperada.Location = new System.Drawing.Point(122, 79);
+            this.lblVarianzaEsperada.Name = "lblVarianzaEsperada";
+            this.lblVarianzaEsperada.Size = new System.Drawing.Size(10, 13);
+            this.lblVarianzaEsperada.TabIndex = 4;
+            this.lblVarianzaEsperada.Text = "-";
+            // 
+            // lblVarianzaObservada
+            // 
+            this.lblVarianzaObservada.AutoSize = true;
+            this.lblVarianzaObservada.Location = new System.Drawing.Point(122, 60);
+            this.lblVarianzaObservada.Name = "lblVarianzaObservada";
+            this.lblVarianzaObservada.Size = new System.Drawing.Size(10, 13);
+            this.lblVarianzaObservada.TabIndex = 4;
+            this.lblVarianzaObservada.Text = "-";
+            // 
+            // lblMediaEsperada
+            // 
+            this.lblMediaEsperada.AutoSize = true;
+            this.lblMediaEsperada.Location = new System.Drawing.Point(122, 41);
+            this.lblMediaEsperada.Name = "lblMediaEsperada";
+            this.lblMediaEsperada.Size = new System.Drawing.Size(10, 13);
+            this.lblMediaEsperada.TabIndex = 4;
+            this.lblMediaEsperada.Text = "-";
+            // 
+            // lblMediaObservada
+            // 
+            this.lblMediaObservada.AutoSize = true;
+            this.lblMediaObservada.Location = new System.Drawing.Point(122, 22);
+            this.lblMediaObservada.Name = "lblMediaObservada";
+            this.lblMediaObservada.Size = new System.Drawing.Size(10, 13);
+            this.lblMediaObservada.TabIndex = 4;
+            this.lblMediaObservada.Text = "-";
+            // 
             // label23
             // 
             this.label23.AutoSize = true;
@@ -375,42 +412,6 @@
             this.label19.Text = "Con este valor se puede entrar a la tabla";
             this.label19.Visible = false;
             // 
-            // lblMediaObservada
-            // 
-            this.lblMediaObservada.AutoSize = true;
-            this.lblMediaObservada.Location = new System.Drawing.Point(122, 22);
-            this.lblMediaObservada.Name = "lblMediaObservada";
-            this.lblMediaObservada.Size = new System.Drawing.Size(10, 13);
-            this.lblMediaObservada.TabIndex = 4;
-            this.lblMediaObservada.Text = "-";
-            // 
-            // lblMediaEsperada
-            // 
-            this.lblMediaEsperada.AutoSize = true;
-            this.lblMediaEsperada.Location = new System.Drawing.Point(122, 41);
-            this.lblMediaEsperada.Name = "lblMediaEsperada";
-            this.lblMediaEsperada.Size = new System.Drawing.Size(10, 13);
-            this.lblMediaEsperada.TabIndex = 4;
-            this.lblMediaEsperada.Text = "-";
-            // 
-            // lblVarianzaObservada
-            // 
-            this.lblVarianzaObservada.AutoSize = true;
-            this.lblVarianzaObservada.Location = new System.Drawing.Point(122, 60);
-            this.lblVarianzaObservada.Name = "lblVarianzaObservada";
-            this.lblVarianzaObservada.Size = new System.Drawing.Size(10, 13);
-            this.lblVarianzaObservada.TabIndex = 4;
-            this.lblVarianzaObservada.Text = "-";
-            // 
-            // lblVarianzaEsperada
-            // 
-            this.lblVarianzaEsperada.AutoSize = true;
-            this.lblVarianzaEsperada.Location = new System.Drawing.Point(122, 79);
-            this.lblVarianzaEsperada.Name = "lblVarianzaEsperada";
-            this.lblVarianzaEsperada.Size = new System.Drawing.Size(10, 13);
-            this.lblVarianzaEsperada.TabIndex = 4;
-            this.lblVarianzaEsperada.Text = "-";
-            // 
             // lblTamañoMuestra
             // 
             this.lblTamañoMuestra.AutoSize = true;
@@ -438,6 +439,17 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Cantidad De Intervalos:";
             // 
+            // btnAjustarIntervalos
+            // 
+            this.btnAjustarIntervalos.Enabled = false;
+            this.btnAjustarIntervalos.Location = new System.Drawing.Point(400, 388);
+            this.btnAjustarIntervalos.Name = "btnAjustarIntervalos";
+            this.btnAjustarIntervalos.Size = new System.Drawing.Size(95, 23);
+            this.btnAjustarIntervalos.TabIndex = 5;
+            this.btnAjustarIntervalos.Text = "Ajustar intervalos";
+            this.btnAjustarIntervalos.UseVisualStyleBackColor = true;
+            this.btnAjustarIntervalos.Click += new System.EventHandler(this.buttonAjustarIntevalos_Click);
+            // 
             // FrmAnalisisChiCuadrado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -450,6 +462,7 @@
             this.Controls.Add(this.lblCantidadIntervalos);
             this.Controls.Add(this.lblChiCuadrado);
             this.Controls.Add(this.lblTamañoMuestra);
+            this.Controls.Add(this.btnAjustarIntervalos);
             this.Controls.Add(this.btnExportarExcel);
             this.Controls.Add(this.buttonVolver);
             this.Controls.Add(this.groupBoxMediaVarianza);
@@ -522,6 +535,7 @@
         private System.Windows.Forms.Label lblTamañoMuestra;
         private System.Windows.Forms.Label lblCantidadIntervalos;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnAjustarIntervalos;
     }
 }
 

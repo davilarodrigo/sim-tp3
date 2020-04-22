@@ -39,7 +39,10 @@ namespace sim_tp3
 
             AnalizarDistribucionDeFrecuencia();
             CalcularFrecuenciasEsperadas(tipoDeDistribucion);
+
+       
         }
+
 
         public double ObtenerChiCuadrado()
         {
@@ -66,12 +69,16 @@ namespace sim_tp3
             return acumuladaSup - acumuladaInf;
 
         }
-
+                
         void CalcularFrecuenciasEsperadas(TiposDistribucion tipoDeDistribucion)
         {
+            double x;//(marca de clase)
+            double frecEsperada;
+            double tamañoIntervalo = limitesSuperioresDeIntervalos[0] - limitesInferioresDeIntervalos[0];
+            double desviacionEstandar = Math.Sqrt(varianza);
+
             frecuenciasEsperadas = new List<double>();
             
-
             switch (tipoDeDistribucion)
             {
                 case TiposDistribucion.ExponencialNegativa:
@@ -103,9 +110,47 @@ namespace sim_tp3
                     break;
 
                 case TiposDistribucion.Normal:
+
+
+                    double exponenteFuncNormal;
+                    double numeradorFuncNormal;
+                    double denominadorFuncNormal = desviacionEstandar * Math.Sqrt(2 * Math.PI);
+
+                    for (int i = 0; i < cantidadDeIntervalos; i++)
+                    {
+                        //obtener marca de clase
+                        x = (double)limitesSuperioresDeIntervalos[i] -  ((double)tamañoIntervalo/ (double)2);
+                        
+                        exponenteFuncNormal = (-0.5) * Math.Pow((x-media)/desviacionEstandar,2);
+                        numeradorFuncNormal = Math.Pow(Math.E, exponenteFuncNormal);
+                        frecEsperada = tamañoMuestra*tamañoIntervalo* (numeradorFuncNormal / denominadorFuncNormal);
+                        frecuenciasEsperadas.Add(frecEsperada);
+
+                    }
+
+                    //=((EXP(-0.5((G4-Media)/DesvStd)^2))/(DesvStdRAIZ(2PI())))(F4-E4)
+                    //G4 = (F4 + E4) / 2
+
                     break;
                 case TiposDistribucion.Poisson:
+                
+                        double numeradorFuncPoisson;
+                        double denominadorFuncPoisson = desviacionEstandar * Math.Sqrt(2 * Math.PI);
+                    
+                    /*    for (int i = 0; i < cantidadDeIntervalos; i++)
+                        {
+                            //obtener marca de clase
+                            x = (double)limitesSuperioresDeIntervalos[i] - ((double)tamañoIntervalo / (double)2);
+
+                            exponenteFuncNormal = (-0.5) * Math.Pow((x - media) / desviacionEstandar, 2);
+                            numeradorFuncNormal = Math.Pow(Math.E, exponenteFuncNormal);
+                            frecEsperada = tamañoMuestra * tamañoIntervalo * (numeradorFuncNormal / denominadorFuncNormal);
+                            frecuenciasEsperadas.Add(frecEsperada);                       
+
+                    }*/
+
                     break;
+
                 default:
                     break;
             }

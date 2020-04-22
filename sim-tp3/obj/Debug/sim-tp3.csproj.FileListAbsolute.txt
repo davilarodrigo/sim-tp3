@@ -29,4 +29,3 @@ C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\sim_tp3.FrmGrafico.re
 C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\sim_tp3.Properties.Resources.resources
 C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\sim-tp3.csproj.GenerateResource.cache
 C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\sim-tp3.csproj.CoreCompileInputs.cache
-C:\Users\Familia\Desktop\4to\SIM\sim-tp3\sim-tp3\obj\Debug\sim-tp3.csprojAssemblyReference.cache

@@ -15,7 +15,7 @@ namespace sim_tp3
     {
         #region declaracion variables
 
-        bool muestraAnalizada=false;
+        bool muestraAnalizada = false;
 
         List<int> frecuenciasObservadas;
         List<double> frecuenciasEsperadas;
@@ -25,8 +25,8 @@ namespace sim_tp3
         bool cantidadIntervalosManual;
         AnalizadorDeMuestra.TiposDistribucion tipoDistribucion;
 
-        private double mediaEsperada=0;
-        private double varianzaEsperada=0;
+        private double mediaEsperada = 0;
+        private double varianzaEsperada = 0;
 
         AnalizadorDeMuestra analizadorDeMuestra;
 
@@ -38,7 +38,6 @@ namespace sim_tp3
 
         public FrmAnalisisChiCuadrado(List<double> muestra, AnalizadorDeMuestra.TiposDistribucion tipoDeDistribucion, double media, double desviacion)
         {
-            construirFormulario();
             this.muestra = muestra;
             this.tipoDistribucion = tipoDeDistribucion;
 
@@ -46,30 +45,33 @@ namespace sim_tp3
             this.mediaEsperada = media;
 
             lblMediaEsperada.Text = media.ToString();
-            lblVarianzaEsperada.Text = varianzaEsperada.ToString();            
+            lblVarianzaEsperada.Text = varianzaEsperada.ToString();
+
+            construirFormulario();
         }
-        
+
         public FrmAnalisisChiCuadrado(List<double> muestra, AnalizadorDeMuestra.TiposDistribucion tipoDeDistribucion, double media)
         {
-            construirFormulario();
             this.muestra = muestra;
             this.tipoDistribucion = tipoDeDistribucion;
 
             this.mediaEsperada = media;
 
             lblMediaEsperada.Text = media.ToString();
+
+            construirFormulario();
         }
 
         public FrmAnalisisChiCuadrado(List<double> muestra, AnalizadorDeMuestra.TiposDistribucion tipoDeDistribucion)
         {
-            construirFormulario();
             this.muestra = muestra;
             this.tipoDistribucion = tipoDeDistribucion;
+            construirFormulario();
         }
 
         public FrmAnalisisChiCuadrado()
         {
-            construirFormulario();
+            InitializeComponent();
         }
 
         private void construirFormulario()
@@ -99,7 +101,7 @@ namespace sim_tp3
             dgvFrecuencia.Rows.Clear();
 
             int cantidadIntervalos; //por defecto es cero, para el modo automatico
-                       
+
             if (cantidadIntervalosManual)
             {
                 if (txtCantidadIntervalos.Text == "")
@@ -110,8 +112,9 @@ namespace sim_tp3
                 cantidadIntervalos = Convert.ToInt32(txtCantidadIntervalos.Text);
             }
             else cantidadIntervalos = (int)Math.Floor(Math.Sqrt(muestra.Count)); //q los intervalos sean raiz del tamaño de muestra
-            
+
             btnExportarExcel.Enabled = true;
+            btnAjustarIntervalos.Enabled = true;
             btnMostrarGrafico.Enabled = true;
             lblCantidadIntervalos.Text = cantidadIntervalos.ToString();
 
@@ -123,7 +126,7 @@ namespace sim_tp3
                                                           this.varianzaEsperada,
                                                           this.mediaEsperada);
 
-            frecuenciasObservadas = analizadorDeMuestra.ObtenerFrecuenciasObservadas;            
+            frecuenciasObservadas = analizadorDeMuestra.ObtenerFrecuenciasObservadas;
             frecuenciasEsperadas = analizadorDeMuestra.ObtenerFrecuenciasEsperadas;
 
             limitesSuperioresDeIntervalos = analizadorDeMuestra.ObtenerLimitesSuperioresDeIntervalos;
@@ -164,7 +167,7 @@ namespace sim_tp3
             //this.lblVarianzaObservada.Text += " " + varianza.ToString();
             lblVarianzaObservada.Text = varianza.ToString();
         }
-      
+
         private void mostrarGrafico()
         {
             if (!muestraAnalizada)
@@ -176,6 +179,64 @@ namespace sim_tp3
             FrmGrafico grafico = new FrmGrafico(frecuenciasObservadas, frecuenciasEsperadas);
             //grafico.recibirParametro();
             grafico.ShowDialog();
+        }
+
+        void unificarIntervalos()
+        {
+            int cantidadIntervalos = limitesSuperioresDeIntervalos.Count;
+
+    
+
+            for (int i = 0; i < cantidadIntervalos; i++)
+            {
+                cantidadIntervalos = frecuenciasEsperadas.Count-1;
+
+                // Evito que se rompa en la última iteración, porque intentaría sumarle un elemento que no existe
+                if (frecuenciasEsperadas.Count-1 == i)
+                {
+                    break;
+                }
+                                
+
+                if (frecuenciasEsperadas[i] < 5)
+                {
+                    frecuenciasEsperadas[i] += frecuenciasEsperadas[i + 1];
+                    frecuenciasObservadas[i] += frecuenciasObservadas[i + 1];
+
+                    limitesSuperioresDeIntervalos[i] = limitesSuperioresDeIntervalos[i + 1];
+
+                    frecuenciasEsperadas.RemoveAt(i + 1);
+                    frecuenciasObservadas.RemoveAt(i + 1);
+                    limitesSuperioresDeIntervalos.RemoveAt(i + 1);
+                    limitesInferioresDeIntervalos.RemoveAt(i + 1);
+                    // Con esto me aseguro que no agarre elementos que no existan
+                    i--;
+                }
+            }
+            if (frecuenciasEsperadas[cantidadIntervalos] < 5)
+            {
+                frecuenciasEsperadas[cantidadIntervalos - 1] += frecuenciasEsperadas[cantidadIntervalos];
+                frecuenciasObservadas[cantidadIntervalos - 1] += frecuenciasObservadas[cantidadIntervalos];
+                limitesSuperioresDeIntervalos[cantidadIntervalos - 1] = limitesSuperioresDeIntervalos[cantidadIntervalos];
+
+                frecuenciasEsperadas.RemoveAt(cantidadIntervalos);
+                frecuenciasObservadas.RemoveAt(cantidadIntervalos);
+                limitesSuperioresDeIntervalos.RemoveAt(cantidadIntervalos);
+                limitesInferioresDeIntervalos.RemoveAt(cantidadIntervalos);
+
+                cantidadIntervalos--;
+            }
+
+            dgvFrecuencia.Rows.Clear();
+
+
+            //cargar dgv
+            for (int i = 0; i < cantidadIntervalos+1; i++)
+            {
+                //linea con mas problemas q flancito
+                dgvFrecuencia.Rows.Add(limitesInferioresDeIntervalos[i], limitesSuperioresDeIntervalos[i], frecuenciasObservadas[i], frecuenciasEsperadas[i], "hola");
+            }
+
         }
 
         private void generarMuestraAleatoria()
@@ -324,16 +385,16 @@ namespace sim_tp3
 
         private void txtLista_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) e.Handled = true;              
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) e.Handled = true;
         }
 
         private void txtLista_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter)
             {
-                if (txtLista.Text!="")
+                if (txtLista.Text != "")
                 {
-                agregarValorAMuestra();
+                    agregarValorAMuestra();
                 }
             }
         }
@@ -404,6 +465,10 @@ namespace sim_tp3
             btnTestChiCuadrado.Enabled = true;
             //limpiarMuestra();
             //btnTestChiCuadrado.Enabled = false;
+        }
+        private void buttonAjustarIntevalos_Click(object sender, EventArgs e)
+        {
+            unificarIntervalos();
         }
 
         private void buttonExportarExcel_Click(object sender, EventArgs e)

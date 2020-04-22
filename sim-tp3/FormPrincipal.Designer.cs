@@ -313,6 +313,7 @@
             this.textBoxValorExponencial.Name = "textBoxValorExponencial";
             this.textBoxValorExponencial.Size = new System.Drawing.Size(100, 20);
             this.textBoxValorExponencial.TabIndex = 11;
+            this.textBoxValorExponencial.Text = "15";
             // 
             // labelValorExponencial
             // 
